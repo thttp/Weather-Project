@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Weather App</title>
+</head>
+<body>
+    <button id="themeToggle" onclick="toggleTheme()"></button>
+    <div id="weather">
+        <div class="search">
+            <button
+                id="trigger"
+                aria-pressed="false"
+                aria-expanded="false"
+                aria-controls="form"
+            >
+                <svg
+                    class="magnifier"
+                    viewBox="0 0 40 40"
+                    fill="none"
+                >
+                    <rect
+                        x="0"
+                        y="0"
+                        width="40"
+                        height="40"
+                        rx="20"
+                        ry="20"
+                        stroke="currentColor"
+                        stroke-width="4"
+                    ></rect>
+                    <g class="glass">
+                        <line
+                            x1="20.5"
+                            x2="20.5"
+                            y1="20"
+                            y2="40"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-width="4"
+                        ></line>
+                    </g>
+                </svg>
+            </button>
+            <form id="form">
+                <input
+                    placeholder="Pesquisar..."
+                    autocomplete="on"
+                    type="search"
+                    id="city"
+                    required
+                />
+            </form>
+        </div>
+        <div id="cityName"></div>
+        <div id="description"></div> <!-- Adicionado para a descrição do clima -->
+        <div id="result"></div>
+        <button id="convertButton" onclick="toggleTemperatureUnit()">Converter para °F</button>
+    </div>
+    <script src="search-animation.js" type="module"></script>
+    <script src="script.js"></script>
+</body>
+</html>
