@@ -22,16 +22,14 @@ async function getWeather() {
         temperatureCelsius = data.main.temp;
         
         document.getElementById('cityName').innerText = city.charAt(0).toUpperCase() + city.slice(1);
-        document.getElementById('description').innerText = description.charAt(0).toUpperCase() + description.slice(1); // Exibe a descrição
         document.getElementById('city').value = '';
         
         document.getElementById('weather').classList.add('expanded');
         updateWeatherDisplay(temperatureCelsius, true);
         updateWeatherBackground(description);
-        document.getElementById('convertButton').style.display = 'inline-block'; // Exibe o botão
+        document.getElementById('convertButton').style.display = 'inline-block';
     } catch (error) {
         alert(error.message);
-        document.getElementById('convertButton').style.display = 'none'; // Esconde o botão se houver erro
     }
 }
 
