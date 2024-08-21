@@ -22,6 +22,7 @@ async function getWeather() {
         temperatureCelsius = data.main.temp;
         
         document.getElementById('cityName').innerText = city.charAt(0).toUpperCase() + city.slice(1);
+        document.getElementById('description').innerText = description.charAt(0).toUpperCase() + description.slice(1); // Atualiza a descrição
         document.getElementById('city').value = '';
         
         document.getElementById('weather').classList.add('expanded');
@@ -38,16 +39,6 @@ function updateWeatherDisplay(temperature, isCelsius) {
     document.getElementById('result').innerHTML = `<p class="temperature">${temperatureDisplay}</p>`;
 }
 
-function toggleTemperatureUnit() {
-    if (temperatureCelsius !== null) {
-        isCelsius = !isCelsius;
-        updateWeatherDisplay(temperatureCelsius, isCelsius);
-        document.getElementById('convertButton').textContent = isCelsius ? 'Converter para °F' : 'Converter para °C';
-    } else {
-        alert("Por favor, consulte o clima primeiro.");
-    }
-}
-
 function updateWeatherBackground(description) {
     const weatherElement = document.getElementById('weather');
     const weatherConditions = {
@@ -62,12 +53,22 @@ function updateWeatherBackground(description) {
     weatherElement.style.backgroundColor = weatherConditions[backgroundColor];
 }
 
+function toggleTemperatureUnit() {
+    if (temperatureCelsius !== null) {
+        isCelsius = !isCelsius;
+        updateWeatherDisplay(temperatureCelsius, isCelsius);
+        document.getElementById('convertButton').textContent = isCelsius ? 'Converter para °F' : 'Converter para °C';
+    } else {
+        alert("Por favor, consulte o clima primeiro.");
+    }
+}
+
 function toggleTheme() {
     isDarkTheme = !isDarkTheme;
     document.body.classList.toggle('dark-theme', isDarkTheme);
     document.getElementById('themeToggle').setAttribute('aria-label', isDarkTheme ? 'Modo Claro' : 'Modo Escuro');
     document.getElementById('weather').classList.toggle('dark-theme', isDarkTheme);
-}
+  }
 
 document.getElementById('city').addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {

@@ -137,10 +137,10 @@ body {
 
 
 #convertButton {
-  display: none; /* Inicialmente escondido */
-  margin-top: 20px;
+  display: none;
+  margin-top: 450px;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #2C3E50;
   color: white;
   border: none;
   border-radius: 5px;
@@ -150,7 +150,7 @@ body {
 }
 
 #convertButton:hover {
-  background-color: #0056b3;
+  background-color: #2C3E50;
 }
 
 #result {
