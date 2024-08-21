@@ -22,7 +22,7 @@ async function getWeather() {
         temperatureCelsius = data.main.temp;
         
         document.getElementById('cityName').innerText = city.charAt(0).toUpperCase() + city.slice(1);
-        document.getElementById('description').innerText = description.charAt(0).toUpperCase() + description.slice(1); // Atualiza a descrição
+        document.getElementById('description').innerText = description.charAt(0).toUpperCase() + description.slice(1);
         document.getElementById('city').value = '';
         
         document.getElementById('weather').classList.add('expanded');
