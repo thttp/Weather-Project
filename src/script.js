@@ -21,16 +21,26 @@ async function getWeather() {
         const description = data.weather[0].description;
         temperatureCelsius = data.main.temp;
         
-        document.getElementById('cityName').innerText = city.charAt(0).toUpperCase() + city.slice(1);
         document.getElementById('description').innerText = description.charAt(0).toUpperCase() + description.slice(1);
+        document.getElementById('cityName').innerText = city.charAt(0).toUpperCase() + city.slice(1);
         document.getElementById('city').value = '';
-        
-        document.getElementById('weather').classList.add('expanded');
+
+        const weatherElement = document.getElementById('weather');
+        if (!weatherElement.classList.contains('expanded')) {
+            weatherElement.classList.add('animate');
+        }
+        weatherElement.classList.add('expanded');
+
         updateWeatherDisplay(temperatureCelsius, true);
         updateWeatherBackground(description);
         document.getElementById('convertButton').style.display = 'inline-block';
+
+        weatherElement.addEventListener('animationend', () => {
+            weatherElement.classList.remove('animate');
+        }, { once: true });
     } catch (error) {
         alert(error.message);
+        document.getElementById('convertButton').style.display = 'none';
     }
 }
 
