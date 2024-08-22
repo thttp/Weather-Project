@@ -40,7 +40,6 @@ async function getWeather() {
         }, { once: true });
     } catch (error) {
         alert(error.message);
-        document.getElementById('convertButton').style.display = 'none';
     }
 }
 
@@ -58,7 +57,7 @@ function updateWeatherBackground(description) {
         'neve': '#FFFFFF',
         'nevoeiro': '#D3D3D3'
     };
-    
+
     const backgroundColor = Object.keys(weatherConditions).find(condition => description.includes(condition)) || '#FFFFFF';
     weatherElement.style.backgroundColor = weatherConditions[backgroundColor];
 }
@@ -78,7 +77,7 @@ function toggleTheme() {
     document.body.classList.toggle('dark-theme', isDarkTheme);
     document.getElementById('themeToggle').setAttribute('aria-label', isDarkTheme ? 'Modo Claro' : 'Modo Escuro');
     document.getElementById('weather').classList.toggle('dark-theme', isDarkTheme);
-  }
+}
 
 document.getElementById('city').addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
