@@ -3,7 +3,6 @@ let isCelsius = true;
 let isDarkTheme = false;
 
 async function getWeather() {
-    const apiKey = '8ee77a33ad92a9aa53ea5a4db2684db2';
     const city = document.getElementById('city').value.trim();
 
     if (!city) {
@@ -11,16 +10,14 @@ async function getWeather() {
         return;
     }
 
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&lang=pt_br&units=metric`;
-
     try {
-        const response = await fetch(url);
+        const response = await fetch(`/api/weather?city=${city}`);
         if (!response.ok) throw new Error('Cidade não encontrada.');
         const data = await response.json();
-        
+
         const description = data.weather[0].description;
         temperatureCelsius = data.main.temp;
-        
+
         document.getElementById('description').innerText = description.charAt(0).toUpperCase() + description.slice(1);
         document.getElementById('cityName').innerText = city.charAt(0).toUpperCase() + city.slice(1);
         document.getElementById('city').value = '';
