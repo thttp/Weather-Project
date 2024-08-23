@@ -1,6 +1,10 @@
 import requests
+from dotenv import load_dotenv
+import os
 
-api_key = "8ee77a33ad92a9aa53ea5a4db2684db2"
+load_dotenv()
+
+api_key = os.getenv("API_KEY")
 
 cidade = input('Informe uma cidade: ')
 
