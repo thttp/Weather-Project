@@ -17,9 +17,13 @@ async function getWeather() {
 
         const description = data.weather[0].description;
         temperatureCelsius = data.main.temp;
+        const humidity = data.main.humidity;
+        const windSpeed = data.wind.speed;
 
         document.getElementById('description').innerText = description.charAt(0).toUpperCase() + description.slice(1);
         document.getElementById('cityName').innerText = city.charAt(0).toUpperCase() + city.slice(1);
+        document.getElementById('humidity').innerText = `Umidade: ${humidity}%`;
+        document.getElementById('windSpeed').innerText = `Ventos: ${windSpeed} km/h`;
         document.getElementById('city').value = '';
 
         const weatherElement = document.getElementById('weather');
@@ -41,9 +45,15 @@ async function getWeather() {
 }
 
 function updateWeatherDisplay(temperature, isCelsius) {
-    const temperatureDisplay = isCelsius ? `${temperature.toFixed(1)}°C` : `${(temperature * 9/5 + 32).toFixed(1)}°F`;
+    const temperatureDisplay = isCelsius 
+        ? (temperature < 0 
+            ? `-${Math.abs(temperature).toFixed(1)}°C` 
+            : `${temperature.toFixed(1)}°C`)
+        : `${(temperature * 9/5 + 32).toFixed(1)}°F`;
+    
     document.getElementById('result').innerHTML = `<p class="temperature">${temperatureDisplay}</p>`;
 }
+
 
 function updateWeatherBackground(description) {
     const weatherElement = document.getElementById('weather');
