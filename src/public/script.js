@@ -32,6 +32,9 @@ async function getWeather() {
         }
         weatherElement.classList.add('expanded');
 
+        document.getElementById('card').style.display = 'block';
+
+
         updateWeatherDisplay(temperatureCelsius, true);
         updateWeatherBackground(description);
         document.getElementById('convertButton').style.display = 'inline-block';
