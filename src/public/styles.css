@@ -196,10 +196,10 @@ body {
 
 #description-container {
   position: absolute;
-  top: 310px; /* Ajuste conforme necessário para o posicionamento desejado */
+  top: 310px;
   left: 50%;
   transform: translateX(-50%);
-  width: 90%; /* Ajuste conforme necessário */
+  width: 90%;
   text-align: center;
 }
 

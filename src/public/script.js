@@ -19,7 +19,7 @@ async function getWeather() {
         temperatureCelsius = data.main.temp;
         const humidity = data.main.humidity;
         const windSpeed = data.wind.speed;
-        const precipitation = data.rain ? data.rain['1h'] : 0; // Precipitação em mm (última hora)
+        const precipitation = data.rain ? data.rain['1h'] : 0;
 
         document.getElementById('description').innerText = description.charAt(0).toUpperCase() + description.slice(1);
         document.getElementById('cityName').innerText = city.charAt(0).toUpperCase() + city.slice(1);
@@ -63,7 +63,6 @@ function updateWeatherDisplay(temperature, isCelsius) {
     document.getElementById('result').innerHTML = `<p class="temperature">${temperatureDisplay}</p>`;
 }
 
-// Mantém a função updateWeatherBackground como está
 function updateWeatherBackground(description) {
     const weatherElement = document.getElementById('weather');
     
