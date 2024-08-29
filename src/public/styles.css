@@ -103,7 +103,7 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  background-color: #f0f0f0;
+  background-color: #090909;
   transition: background-color 0.5s ease;
 }
 
@@ -127,14 +127,14 @@ body {
   position: relative;
   text-align: center;
   padding: 20px;
-  background-color: #2C3E50;
+  background: linear-gradient(135deg, #1c2a38, #526c82); /* Gradiente padrão tema claro */
   border-radius: 35px;
   width: 300px;
   height: 90px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   transform-origin: top;
-  transition: opacity 0.3s ease, background-color 1s ease;
+  transition: opacity 0.3s ease, background 1s ease;
 }
 
 #weather.expanded {
@@ -172,6 +172,15 @@ body {
   left: 28px;
   font-size: 1em; 
   color: #000000; 
+  font-weight: bold;
+}
+
+#cityIcon {
+  position: absolute;
+  font-size: 24px;
+  color: #000;
+  top: 20px; 
+  left: 20px; 
 }
 
 #description {
@@ -180,14 +189,16 @@ body {
   right: 28px;
   font-size: 1em;
   color: #000;
+  font-weight: bold;
 }
 
 .temperature {
   position: absolute;
   top: 32px;
   right: 8px;
-  font-size: 2em; 
+  font-size: 7em; 
   color: #000000; 
+  font-weight: bold;
 }
 
 #convertButton {
@@ -214,9 +225,9 @@ body {
   transform: translateX(-50%);
   width: 90%;
   height: 80px;
-  background: rgba(255, 255, 255, 0.3); 
-  border-radius: 100px; 
-  backdrop-filter: blur(5px); 
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 100px;
+  backdrop-filter: blur(10px);
   padding: 20px;
   box-sizing: border-box;
   display: flex;
@@ -226,6 +237,7 @@ body {
   z-index: 1;
 }
 
+
 #windSpeed {
   position: absolute;
   font-size: 1em; 
@@ -233,17 +245,35 @@ body {
   top: 490px;
   left: 28px;
   z-index: 2;
+  font-weight: bold;
 }
+
+#windIcon {
+  position: absolute;
+  font-size: 24px;
+  color: #000;
+  top: 60px; 
+  left: 80px; 
+}
+
 
 #humidity {
   position: absolute;
   font-size: 1em; 
   color: #000000; 
   top: 490px;
-  right: 28px;
+  right: 40px;
   z-index: 2;
+  font-weight: bold;
 }
 
+#humidityIcon {
+  position: absolute;
+  font-size: 24px;
+  color: #000;
+  top: 100px;
+  right: 20px;
+}
 
 #themeToggle {
   position: fixed;
@@ -281,7 +311,7 @@ body {
 }
 
 .dark-theme #weather {
-  background-color: #ffffff;
+  background: linear-gradient(190deg, #ffffff, #838383);
   color: #fff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
 }
