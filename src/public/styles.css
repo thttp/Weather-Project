@@ -127,7 +127,7 @@ body {
   position: relative;
   text-align: center;
   padding: 20px;
-  background: linear-gradient(135deg, #1c2a38, #526c82); /* Gradiente padrão tema claro */
+  background: linear-gradient(135deg, #1c2a38, #526c82);
   border-radius: 35px;
   width: 300px;
   height: 90px;
@@ -166,11 +166,17 @@ body {
   opacity: 1;
 }
 
-#cityName {
+#city-container {
   position: absolute;
   top: 70px;
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#cityName {
   font-size: 1.2em; 
   color: #000000; 
   text-align: center;
@@ -178,31 +184,37 @@ body {
   height: 50px;
   line-height: 50px;
   font-weight: bold;
+  margin-left: 5px;
 }
 
 #cityIcon {
-  position: absolute;
-  font-size: 24px;
+  font-size: 18px;
   color: #000;
-  top: 70px; 
-  left: 20px; 
+  margin-right: 5px;
+  display: none; 
+}
+
+#description-container {
+  position: absolute;
+  top: 310px; /* Ajuste conforme necessário para o posicionamento desejado */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%; /* Ajuste conforme necessário */
+  text-align: center;
 }
 
 #description {
-  position: absolute;
-  top: 120px;
-  right: 28px;
-  font-size: 1em;
-  color: #000;
+  font-size: 1.2em; 
+  color: #000000; 
   font-weight: bold;
 }
 
 .temperature {
   position: absolute;
-  top: 80px;
+  top: 75px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 7em; 
+  font-size: 8em; 
   color: #000000; 
   text-align: center;
   width: 100%;
@@ -235,54 +247,65 @@ body {
   transform: translateX(-50%);
   width: 90%;
   height: 80px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 100px;
-  backdrop-filter: blur(10px);
-  padding: 20px;
+  background: rgba(255, 255, 255, 0.3); 
+  border-radius: 100px; 
+  backdrop-filter: blur(5px); 
+  padding: 10px;
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   z-index: 1;
 }
 
-
-#windSpeed {
-  position: absolute;
-  font-size: 1em; 
-  color: #000000; 
-  top: 490px;
-  left: 28px;
-  z-index: 2;
-  font-weight: bold;
+#weatherInfo {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
 }
+
+#humidity, #windSpeed, #precipitation {
+  font-size: 1em; 
+  color: #000000;
+  margin-right: 30px;
+  margin-left: 30px;
+  margin-top: 28px;
+}
+
+#humidity:last-child {
+  margin-right: 0;
+}
+
 
 #windIcon {
   position: absolute;
-  font-size: 24px;
+  font-size: 19px;
   color: #000;
-  top: 60px; 
-  left: 80px; 
-}
-
-
-#humidity {
-  position: absolute;
-  font-size: 1em; 
-  color: #000000; 
-  top: 490px;
-  right: 40px;
+  bottom: 72px; 
+  left: 75px; 
+  display: none;
   z-index: 2;
-  font-weight: bold;
 }
 
 #humidityIcon {
   position: absolute;
-  font-size: 24px;
+  font-size: 19px;
   color: #000;
-  top: 100px;
-  right: 20px;
+  bottom: 72px;
+  right: 160px;
+  display: none;
+  z-index: 2;
+}
+
+#precipitationIcon {
+  position: absolute;
+  font-size: 19px;
+  color: #000;
+  bottom: 72px; 
+  right: 62px; 
+  display: none;
+  z-index: 2;
 }
 
 #themeToggle {
@@ -325,3 +348,4 @@ body {
   color: #fff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
 }
+

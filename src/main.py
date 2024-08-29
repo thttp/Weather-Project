@@ -21,8 +21,12 @@ try:
         temperatura = dicionario_requisicao['main']['temp']
         humidade = dicionario_requisicao['main']['humidity']
         vento = dicionario_requisicao['wind']['speed']
+        
+        precipitação = dicionario_requisicao.get('rain', {}).get('1h', 0)
+        if precipitação == 0:
+            precipitação = dicionario_requisicao.get('snow', {}).get('1h', 0)
 
-        print(f'{descricao.capitalize()}, {temperatura:.1f}°C, humidade: {humidade}%, ventos de {vento:.1f} km/h')
+        print(f'{descricao.capitalize()}, {temperatura:.1f}°C, humidade: {humidade}%, ventos de {vento:.1f} km/h, precipitação: {precipitação:.1f} mm')
     else:
         print("Cidade não encontrada.")
 except requests.exceptions.RequestException as e:

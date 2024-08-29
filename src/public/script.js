@@ -19,12 +19,19 @@ async function getWeather() {
         temperatureCelsius = data.main.temp;
         const humidity = data.main.humidity;
         const windSpeed = data.wind.speed;
+        const precipitation = data.rain ? data.rain['1h'] : 0; // Precipitação em mm (última hora)
 
         document.getElementById('description').innerText = description.charAt(0).toUpperCase() + description.slice(1);
         document.getElementById('cityName').innerText = city.charAt(0).toUpperCase() + city.slice(1);
         document.getElementById('humidity').textContent = `${humidity}%`;
         document.getElementById('windSpeed').innerText = `${windSpeed} km/h`;
+        document.getElementById('precipitation').textContent = precipitation > 0 ? `${precipitation} mm` : '0 mm';
         document.getElementById('city').value = '';
+
+        document.getElementById('windIcon').style.display = 'inline'; 
+        document.getElementById('humidityIcon').style.display = 'inline';
+        document.getElementById('cityIcon').style.display = 'inline';
+        document.getElementById('precipitationIcon').style.display = 'inline'; 
 
         const weatherElement = document.getElementById('weather');
         if (!weatherElement.classList.contains('expanded')) {
@@ -33,7 +40,6 @@ async function getWeather() {
         weatherElement.classList.add('expanded');
 
         document.getElementById('card').style.display = 'block';
-
 
         updateWeatherDisplay(temperatureCelsius, true);
         updateWeatherBackground(description);
@@ -49,13 +55,15 @@ async function getWeather() {
 
 function updateWeatherDisplay(temperature, isCelsius) {
     const temperatureDisplay = isCelsius 
-        ? `${Math.round(temperature)}°C`
-        : `${Math.round(temperature * 9/5 + 32)}°F`;
+        ? (temperature < 0 
+            ? `-${Math.abs(temperature).toFixed(0)}°` 
+            : `${temperature.toFixed(0)}°`)
+        : `${(temperature * 9/5 + 32).toFixed(0)}°`;
     
     document.getElementById('result').innerHTML = `<p class="temperature">${temperatureDisplay}</p>`;
 }
 
-
+// Mantém a função updateWeatherBackground como está
 function updateWeatherBackground(description) {
     const weatherElement = document.getElementById('weather');
     

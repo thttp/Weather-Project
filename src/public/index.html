@@ -55,16 +55,24 @@
                 />
             </form>
         </div>
-        <div id="cityName"></div>
-        <div id="description"></div>
+        <div id="city-container">
+            <i id="cityIcon" class="fas fa-map-marker-alt"></i>
+         <div id="cityName"></div>
+        </div>
+        <div id="description-container">
+            <div id="description"></div>
+        </div>
         <div id="result"></div>
-        <div id="humidity"></div>
-        <div id="windSpeed"></div>
-        <!-- Ícones separados -->
-        <i id="cityIcon" class="fas fa-map-marker-alt"></i>
         <i id="windIcon" class="fas fa-wind"></i>
         <i id="humidityIcon" class="fas fa-tint"></i>
-        <div id="card"></div>
+        <i id="precipitationIcon" class="fas fa-cloud-showers-heavy"></i>
+        <div id="card">
+            <div id="weatherInfo">
+                <div id="windSpeed"></div>
+                <div id="humidity"></div>
+                <div id="precipitation"></div>
+            </div>
+        </div>             
         <button id="convertButton" onclick="toggleTemperatureUnit()">Converter para °F</button>
     </div>
     <script src="search-animation.js" type="module"></script>
