@@ -8,7 +8,17 @@
     <title>Weather App</title>
 </head>
 <body>
-    <button id="themeToggle" onclick="toggleTheme()"></button>
+    <div class="waveWrapper waveAnimation">
+        <div class="waveWrapperInner bgTop">
+            <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+        </div>
+        <div class="waveWrapperInner bgMiddle">
+            <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+        </div>
+        <div class="waveWrapperInner bgBottom">
+            <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+        </div>
+    </div>
     <div id="weather">
         <div class="search">
             <button
@@ -63,17 +73,23 @@
             <div id="description"></div>
         </div>
         <div id="result"></div>
-        <i id="windIcon" class="fas fa-wind"></i>
-        <i id="humidityIcon" class="fas fa-tint"></i>
-        <i id="precipitationIcon" class="fas fa-cloud-showers-heavy"></i>
         <div id="card">
             <div id="weatherInfo">
-                <div id="windSpeed"></div>
-                <div id="humidity"></div>
-                <div id="precipitation"></div>
+                <div class="weatherItem">
+                    <i id="windIcon" class="fas fa-wind"></i>
+                    <div id="windSpeed"></div>
+                </div>
+                <div class="weatherItem">
+                    <i id="humidityIcon" class="fas fa-tint"></i>
+                    <div id="humidity"></div>
+                </div>
+                <div class="weatherItem">
+                    <i id="precipitationIcon" class="fas fa-cloud-rain"></i>
+                    <div id="precipitation"></div>
+                </div>
             </div>
-        </div>             
-        <button id="convertButton" onclick="toggleTemperatureUnit()">Converter para °F</button>
+        </div>                            
+        <button id="convertButton" onclick="toggleTemperatureUnit()">°F</button>
     </div>
     <script src="search-animation.js" type="module"></script>
     <script src="script.js"></script>

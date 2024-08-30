@@ -1,6 +1,5 @@
 let temperatureCelsius = null;
 let isCelsius = true;
-let isDarkTheme = false;
 
 async function getWeather() {
     const city = document.getElementById('city').value.trim();
@@ -42,7 +41,6 @@ async function getWeather() {
         document.getElementById('card').style.display = 'block';
 
         updateWeatherDisplay(temperatureCelsius, true);
-        updateWeatherBackground(description);
         document.getElementById('convertButton').style.display = 'inline-block';
 
         weatherElement.addEventListener('animationend', () => {
@@ -63,39 +61,14 @@ function updateWeatherDisplay(temperature, isCelsius) {
     document.getElementById('result').innerHTML = `<p class="temperature">${temperatureDisplay}</p>`;
 }
 
-function updateWeatherBackground(description) {
-    const weatherElement = document.getElementById('weather');
-    
-    const weatherConditions = {
-        'céu limpo': 'linear-gradient(to bottom, #87CEEB, #4682B4)',
-        'nublado': 'linear-gradient(to bottom, #B0C4DE, #696969)',
-        'chuva': 'linear-gradient(to bottom, #4682B4, #00008B)',
-        'neve': 'linear-gradient(to bottom, #FFFFFF, #D3D3D3)',
-        'nevoeiro': 'linear-gradient(to bottom, #D3D3D3, #A9A9A9)'
-    };
-
-    const backgroundGradient = Object.keys(weatherConditions).find(condition => description.includes(condition)) 
-        ? weatherConditions[description]
-        : 'linear-gradient(to bottom, #FFFFFF, #D3D3D3)';
-
-    weatherElement.style.background = backgroundGradient;
-}
-
 function toggleTemperatureUnit() {
     if (temperatureCelsius !== null) {
         isCelsius = !isCelsius;
         updateWeatherDisplay(temperatureCelsius, isCelsius);
-        document.getElementById('convertButton').textContent = isCelsius ? 'Converter para °F' : 'Converter para °C';
+        document.getElementById('convertButton').textContent = isCelsius ? '°F' : '°C';
     } else {
         alert("Por favor, consulte o clima primeiro.");
     }
-}
-
-function toggleTheme() {
-    isDarkTheme = !isDarkTheme;
-    document.body.classList.toggle('dark-theme', isDarkTheme);
-    document.getElementById('themeToggle').setAttribute('aria-label', isDarkTheme ? 'Modo Claro' : 'Modo Escuro');
-    document.getElementById('weather').classList.toggle('dark-theme', isDarkTheme);
 }
 
 document.getElementById('city').addEventListener('keypress', (event) => {

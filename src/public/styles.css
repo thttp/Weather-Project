@@ -1,6 +1,7 @@
 @layer demo {
   :root {
     --accent: red;
+    --magnifier-color: #01224d;
   }
   .search {
     position: relative;
@@ -40,7 +41,7 @@
     scale: 0.5;
     translate: 0 -5%;
     pointer-events: none;
-    color: color-mix(in lch, canvasText, canvas 45%);
+    color: var(--magnifier-color); /* Aplica a nova cor */
   }
 
   #trigger:is(:hover, :focus-visible) {
@@ -96,17 +97,6 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  background-color: #090909;
-  transition: background-color 0.5s ease;
-}
-
 @keyframes scrollIn {
   0% {
     height: 0;
@@ -123,18 +113,99 @@ body {
 
 }
 
+@keyframes move_wave {
+  0% {
+      transform: translateX(0) translateZ(0) scaleY(1);
+  }
+  50% {
+      transform: translateX(-25%) translateZ(0) scaleY(0.55);
+  }
+  100% {
+      transform: translateX(-50%) translateZ(0) scaleY(1);
+  }
+}
+
+.waveWrapper {
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+}
+.waveWrapperInner {
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  bottom: -1px;
+  background-image: linear-gradient(to top, #5a5a6d 20%, #232335 80%);
+}
+.bgTop {
+  z-index: 15;
+  opacity: 0.5;
+}
+.bgMiddle {
+  z-index: 10;
+  opacity: 0.75;
+}
+.bgBottom {
+  z-index: 5;
+}
+.wave {
+  position: absolute;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-repeat: repeat no-repeat;
+  background-position: 0 bottom;
+  transform-origin: center bottom;
+}
+.waveTop {
+  background-size: 50% 100px;
+}
+.waveAnimation .waveTop {
+animation: move_wave 3s;
+ -webkit-animation: move_wave 3s;
+ -webkit-animation-delay: 1s;
+ animation-delay: 1s;
+}
+.waveMiddle {
+  background-size: 50% 120px;
+}
+.waveAnimation .waveMiddle {
+  animation: move_wave 10s linear infinite;
+}
+.waveBottom {
+  background-size: 50% 100px;
+}
+.waveAnimation .waveBottom {
+  animation: move_wave 15s linear infinite;
+}
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #27273c;
+  overflow: hidden;
+}
+
 #weather {
   position: relative;
   text-align: center;
   padding: 20px;
-  background: linear-gradient(135deg, #1c2a38, #526c82);
+  background: linear-gradient(120deg, #6895d8 20%, #a6b4e4 60%, #5447a5 100%);
   border-radius: 35px;
   width: 300px;
   height: 90px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   transform-origin: top;
-  transition: opacity 0.3s ease, background 1s ease;
+  z-index: 100;
 }
 
 #weather.expanded {
@@ -156,7 +227,7 @@ body {
 #result {
   display: flex;
   flex-direction: column;
-  align-items: absolute;
+  align-items: center;
   gap: 10px;
   padding: 10px;
   position: relative;
@@ -178,7 +249,9 @@ body {
 
 #cityName {
   font-size: 1.2em; 
-  color: #000000; 
+  background: linear-gradient(to right, #01224d, #3b3f95, #01224d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-align: center;
   width: 100%;
   height: 50px;
@@ -189,7 +262,7 @@ body {
 
 #cityIcon {
   font-size: 18px;
-  color: #000;
+  color: #01224d;
   margin-right: 5px;
   display: none; 
 }
@@ -205,23 +278,29 @@ body {
 
 #description {
   font-size: 1.2em; 
-  color: #000000; 
+  background: linear-gradient(to right, #00122a, #333679, #001531);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-weight: bold;
 }
 
 .temperature {
   position: absolute;
-  top: 75px;
-  left: 50%;
+  top: 1%;
+  left: 55%;
   transform: translateX(-50%);
-  font-size: 8em; 
-  color: #000000; 
+  font-size: 9em; 
+  background: linear-gradient(to right, #0a3a78, #01224d, #07346f, #393ea9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-align: center;
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
+  width: 90%;
+  height: 125px;
+  line-height: 1em;
   font-weight: bold;
 }
+
 
 #convertButton {
   display: none;
@@ -265,87 +344,27 @@ body {
   text-align: center;
 }
 
-#humidity, #windSpeed, #precipitation {
-  font-size: 1em; 
-  color: #000000;
+.weatherItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-right: 30px;
   margin-left: 30px;
-  margin-top: 28px;
+}
+
+.weatherItem i {
+  font-size: 24px;
+  color: #061c3a;
+  margin-bottom: 5px;
+}
+
+#humidity, #windSpeed, #precipitation {
+  font-size: 1em; 
+  background: linear-gradient(to right, #001734, #01295a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 #humidity:last-child {
   margin-right: 0;
 }
-
-
-#windIcon {
-  position: absolute;
-  font-size: 19px;
-  color: #000;
-  bottom: 72px; 
-  left: 75px; 
-  display: none;
-  z-index: 2;
-}
-
-#humidityIcon {
-  position: absolute;
-  font-size: 19px;
-  color: #000;
-  bottom: 72px;
-  right: 160px;
-  display: none;
-  z-index: 2;
-}
-
-#precipitationIcon {
-  position: absolute;
-  font-size: 19px;
-  color: #000;
-  bottom: 72px; 
-  right: 62px; 
-  display: none;
-  z-index: 2;
-}
-
-#themeToggle {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  background: none;
-  color: #2C3E50;
-  border: none;
-  padding: 10px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 1000;
-  font-size: 1.5em;
-  transition: color 0.3s;
-}
-
-.dark-theme {
-  background-color: #2C3E50;
-}
-
-.dark-theme #themeToggle {
-  color: white;
-}
-
-.dark-theme #themeToggle::before {
-  content: '\f186';
-  font-family: 'Font Awesome 6 Free';
-  font-weight: 900;
-}
-
-#themeToggle::before {
-  content: '\f185';
-  font-family: 'Font Awesome 6 Free';
-  font-weight: 900;
-}
-
-.dark-theme #weather {
-  background: linear-gradient(190deg, #ffffff, #838383);
-  color: #fff;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-}
-
